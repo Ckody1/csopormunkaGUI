@@ -218,6 +218,9 @@ public class csoportmunka extends javax.swing.JFrame {
     private void összeadás(){
         
     }
+    private void osztas(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
