@@ -5,6 +5,8 @@
  */
 package csoportmunka_0330;
 
+import java.util.Random;
+
 /**
  *
  * @author Ckody
@@ -17,6 +19,16 @@ public class csoportmunka extends javax.swing.JFrame {
     public csoportmunka() {
         initComponents();
     }
+    Random rnd = new Random();
+    int feladatSorszam = 0;
+    int kerdesekSzama = 1;
+    int probakSzama = 1;
+    int szam1 = 0;
+    int szam2 = 0;
+    int eredmeny = 0;
+    String feladatKiiras = "Feladat: ";
+    String feladatMegoldasa = "Feladat megoldása: ";
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,16 +39,17 @@ public class csoportmunka extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         txtEredmeny = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnMegoldas = new javax.swing.JButton();
         lbKerdesekszama = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnUjFeladat = new javax.swing.JButton();
+        lbFeladatMegoldasa = new javax.swing.JLabel();
+        lbProbakSzama = new javax.swing.JLabel();
+        lbJoVNem = new javax.swing.JLabel();
+        lbFeladat = new javax.swing.JLabel();
+        btnUjra = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -46,27 +59,39 @@ public class csoportmunka extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
 
+        jLabel8.setText("jLabel8");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txtEredmeny.setText("                ");
 
         jLabel1.setText("Válaszod:");
 
-        jButton1.setText("Megoldás");
+        btnMegoldas.setText("Megoldás");
+        btnMegoldas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMegoldasActionPerformed(evt);
+            }
+        });
 
-        lbKerdesekszama.setText("Kérdések Száma: ");
+        lbKerdesekszama.setText("Kérdések száma: ");
 
-        jButton2.setText("Új Feladat");
+        btnUjFeladat.setText("Új Feladat");
+        btnUjFeladat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUjFeladatActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Feladat megoldása");
+        lbFeladatMegoldasa.setText("Feladat megoldása:");
 
-        jLabel3.setText("Próbálkozások száma:");
+        lbProbakSzama.setText("Próbálkozások száma:");
 
-        jLabel4.setText("jó v nem");
+        lbJoVNem.setText("jó v nem");
 
-        jLabel5.setText("Feladat: ");
+        lbFeladat.setText("Feladat: ");
 
-        jButton3.setText("Újra");
+        btnUjra.setText("Újra");
 
         jLabel6.setText("alapműveletek:");
 
@@ -113,33 +138,33 @@ public class csoportmunka extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5))
+                            .addComponent(lbFeladat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbKerdesekszama)
-                            .addComponent(jLabel3))
+                            .addComponent(lbProbakSzama))
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnMegoldas)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
+                                .addComponent(lbFeladatMegoldasa))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lbJoVNem)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton3)
+                                        .addComponent(btnUjra)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jButton2)))))
+                                        .addComponent(btnUjFeladat)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -148,7 +173,7 @@ public class csoportmunka extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jLabel5)
+                        .addComponent(lbFeladat)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -157,25 +182,26 @@ public class csoportmunka extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lbKerdesekszama)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
+                        .addComponent(lbProbakSzama)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel2))
+                    .addComponent(btnMegoldas)
+                    .addComponent(lbFeladatMegoldasa))
                 .addGap(15, 15, 15)
-                .addComponent(jLabel4)
+                .addComponent(lbJoVNem)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(btnUjra)
+                    .addComponent(btnUjFeladat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -183,12 +209,31 @@ public class csoportmunka extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        osztas();
+        kerdesekSzama = 1;
+        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnUjFeladatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjFeladatActionPerformed
+        if(feladatSorszam == 4){
+            osztas();
+        }
+        if(feladatSorszam != 0){
+            kerdesekSzama ++;
+            lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+            probakSzama = 1;
+        }
+    }//GEN-LAST:event_btnUjFeladatActionPerformed
+
+    private void btnMegoldasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegoldasActionPerformed
+        if(txtEredmeny.equals(eredmeny)){
+            lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
+        }
+    }//GEN-LAST:event_btnMegoldasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,27 +273,56 @@ public class csoportmunka extends javax.swing.JFrame {
         
     }
     private void osztas(){
+        eredmeny = 0;
+        feladatSorszam = 4;
+        feladatKiiras = "Feladat: ";
+        szam2 = rnd.nextInt(98)+2;
+        boolean oszthato = false;
+        while(!oszthato){
+            szam1 = rnd.nextInt(99)+1;
+            for (int i = 2; i < 100; i++) {
+               if(szam1 % i == 0){
+                   oszthato = true;
+               }
+            } 
+        }
+        while(!(szam1 % szam2 == 0)){
+            szam2 = rnd.nextInt(98)+2;
+        }
+        feladatKiiras += szam1 + " % " + szam2;
+        int eredmeny1 = szam1 % szam2;
+        eredmeny = eredmeny1;
+        lbFeladat.setText(feladatKiiras);
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+    }
+    private void szorzas(){
+    
+        
+    } 
+    private void kivonas(){
+    
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnMegoldas;
+    private javax.swing.JButton btnUjFeladat;
+    private javax.swing.JButton btnUjra;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel lbFeladat;
+    private javax.swing.JLabel lbFeladatMegoldasa;
+    private javax.swing.JLabel lbJoVNem;
     private javax.swing.JLabel lbKerdesekszama;
+    private javax.swing.JLabel lbProbakSzama;
     private javax.swing.JTextField txtEredmeny;
     // End of variables declaration//GEN-END:variables
 }
