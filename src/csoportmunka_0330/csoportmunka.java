@@ -18,17 +18,30 @@ public class csoportmunka extends javax.swing.JFrame {
      */
     public csoportmunka() {
         initComponents();
+        btnMegoldas.setEnabled(false);
+        btnUjFeladat.setEnabled(false);
+        btnUjra.setEnabled(false);
+        btnFeladas.setEnabled(false);
+        setTitle("VÁLASSZ FELADATTÍPUST!");
     }
     Random rnd = new Random();
     int feladatSorszam = 0;
-    int kerdesekSzama = 1;
+    int kerdesekSzama = 0;
     int probakSzama = 1;
     int szam1 = 0;
     int szam2 = 0;
     int eredmeny = 0;
+    int alapMuv1 = 0;
+    int alapMuv2 = 0;
+    int alapMuv3 = 0;
+    int alapMuv4 = 0;
+    int joValaszok = 0;
+    float szazalekosEredm = 0;
     boolean megoldasE = false;
+    boolean feladodE = false;
     String feladatKiiras = "Feladat: ";
     String feladatMegoldasa = "Feladat megoldása: ";
+    
     
 
     /**
@@ -41,18 +54,23 @@ public class csoportmunka extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
-        txtEredmeny = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         btnMegoldas = new javax.swing.JButton();
-        lbKerdesekszama = new javax.swing.JLabel();
         btnUjFeladat = new javax.swing.JButton();
         lbFeladatMegoldasa = new javax.swing.JLabel();
-        lbProbakSzama = new javax.swing.JLabel();
         lbJoVNem = new javax.swing.JLabel();
-        lbFeladat = new javax.swing.JLabel();
         btnUjra = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbSzazalekos = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lbAlapMuv = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lbProbakSzama = new javax.swing.JLabel();
+        lbKerdesekszama = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lbFeladat = new javax.swing.JLabel();
+        txtEredmeny = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnFeladas = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -64,11 +82,6 @@ public class csoportmunka extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtEredmeny.setMinimumSize(new java.awt.Dimension(54, 20));
-        txtEredmeny.setName(""); // NOI18N
-
-        jLabel1.setText("Válaszod:");
-
         btnMegoldas.setText("Megoldás");
         btnMegoldas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMegoldas.addActionListener(new java.awt.event.ActionListener() {
@@ -76,8 +89,6 @@ public class csoportmunka extends javax.swing.JFrame {
                 btnMegoldasActionPerformed(evt);
             }
         });
-
-        lbKerdesekszama.setText("Kérdések száma: ");
 
         btnUjFeladat.setText("Új Feladat");
         btnUjFeladat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -89,11 +100,7 @@ public class csoportmunka extends javax.swing.JFrame {
 
         lbFeladatMegoldasa.setText("Feladat megoldása:");
 
-        lbProbakSzama.setText("Próbálkozások száma:");
-
-        lbJoVNem.setText("jó v nem");
-
-        lbFeladat.setText("Feladat: ");
+        lbJoVNem.setText("         ");
 
         btnUjra.setText("Újra");
         btnUjra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -105,7 +112,90 @@ public class csoportmunka extends javax.swing.JFrame {
 
         jLabel6.setText("alapműveletek:");
 
-        jLabel7.setText("Százalékos eredmény:");
+        lbSzazalekos.setText("Százalékos eredmény:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        lbAlapMuv.setText("Összeadás:   , Kivonás:   , Szorzás:   , Osztás:   ");
+        lbAlapMuv.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lbProbakSzama.setText("Próbálkozások száma:");
+
+        lbKerdesekszama.setText("Kérdések száma: ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbKerdesekszama)
+                    .addComponent(lbProbakSzama))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbKerdesekszama)
+                .addGap(18, 18, 18)
+                .addComponent(lbProbakSzama)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lbFeladat.setText("Feladat: ");
+
+        txtEredmeny.setMinimumSize(new java.awt.Dimension(54, 20));
+        txtEredmeny.setName(""); // NOI18N
+
+        jLabel1.setText("Válaszod:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbFeladat, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbFeladat)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        btnFeladas.setText("Feladom");
+        btnFeladas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeladasActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Feladatok");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -158,61 +248,60 @@ public class csoportmunka extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lbFeladat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbKerdesekszama)
-                            .addComponent(lbProbakSzama))
-                        .addGap(32, 32, 32))
+                        .addComponent(lbAlapMuv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbSzazalekos, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbJoVNem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnMegoldas)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbFeladatMegoldasa))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbJoVNem)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnMegoldas)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnFeladas))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
                                         .addComponent(btnUjra)
                                         .addGap(31, 31, 31)
-                                        .addComponent(btnUjFeladat)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(btnUjFeladat)))
+                                .addGap(14, 14, 14)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbFeladatMegoldasa)
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lbFeladat)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbKerdesekszama)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbProbakSzama)))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMegoldas)
-                    .addComponent(lbFeladatMegoldasa))
+                    .addComponent(lbFeladatMegoldasa)
+                    .addComponent(btnFeladas))
                 .addGap(15, 15, 15)
                 .addComponent(lbJoVNem)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel7)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbAlapMuv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbSzazalekos)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUjra)
@@ -225,24 +314,15 @@ public class csoportmunka extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         szorzas();
-        kerdesekSzama = 1;
-        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
-        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+        szorzas();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         osztas();
-        kerdesekSzama = 1;
-        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
-        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         osszeadas();
-        kerdesekSzama = 1;
-        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
-        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnUjFeladatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjFeladatActionPerformed
@@ -259,14 +339,14 @@ public class csoportmunka extends javax.swing.JFrame {
             osztas();
         }
         if(feladatSorszam != 0){
-            kerdesekSzama ++;
+            
             lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
             probakSzama = 1;
             lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
             lbFeladatMegoldasa.setText("Feladat megoldása: ");
             btnMegoldas.setEnabled(true);
+            txtEredmeny.setText("");
         }
-        vegEredmeny();
     }//GEN-LAST:event_btnUjFeladatActionPerformed
 
     private void btnMegoldasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegoldasActionPerformed
@@ -279,15 +359,16 @@ public class csoportmunka extends javax.swing.JFrame {
         lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
         btnMegoldas.setEnabled(true);
         txtEredmeny.setText("");
-        vegEredmeny();
     }//GEN-LAST:event_btnUjraActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         kivonas();
-        kerdesekSzama = 1;
-        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
-        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btnFeladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeladasActionPerformed
+        feladodE = true;
+        vegEredmeny();
+    }//GEN-LAST:event_btnFeladasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,6 +417,7 @@ public class csoportmunka extends javax.swing.JFrame {
         }
         feladatKiiras += szam1 + " + " + szam2;
         lbFeladat.setText(feladatKiiras);
+        alapMuv1 ++;
         vegEredmeny();
     }
     private void osztas(){
@@ -347,21 +429,21 @@ public class csoportmunka extends javax.swing.JFrame {
         while(!oszthato){
             szam1 = rnd.nextInt(99)+1;
             for (int i = 2; i < 100; i++) {
-               if(szam1 % i == 0){
+               if(szam1 % i == 0 && szam1 != i){
                    oszthato = true;
                }
             } 
         }
-        while(!(szam1 % szam2 == 0)){
+        while(!(szam1 % szam2 == 0) || (szam1 == szam2)){
             szam2 = rnd.nextInt(98)+2;
         }
         feladatKiiras += szam1 + " / " + szam2;
         eredmeny = Math.round(szam1 / szam2);
         lbFeladat.setText(feladatKiiras);
+        alapMuv4 ++;
         vegEredmeny();
     }
-    private void szorzas(){
-       
+    private void szorzas(){       
         eredmeny=0;
         feladatSorszam = 3;
         feladatKiiras = "Feladat: ";
@@ -375,8 +457,8 @@ public class csoportmunka extends javax.swing.JFrame {
         }
         feladatKiiras += szam1 + " * " + szam2;
         lbFeladat.setText(feladatKiiras);
+        alapMuv3 ++;
         vegEredmeny();
-       
     } 
     private void kivonas(){
         eredmeny = 0;
@@ -392,40 +474,63 @@ public class csoportmunka extends javax.swing.JFrame {
             feladatKiiras += szam2 + " - " + szam1;
         }
         lbFeladat.setText(feladatKiiras);
+        alapMuv2 ++;
         vegEredmeny();
-        
-    
-        
     }
 
     private void vegEredmeny(){
 //        int valasz = Integer.parseInt(txtEredmeny.getText());
+        setTitle("");
+        String valasz = String.valueOf(eredmeny);
         if(feladatSorszam != 0){
-            if(!megoldasE){
-                lbFeladatMegoldasa.setText("Feladat megoldása: ");
+            btnMegoldas.setEnabled(true);
+            btnUjFeladat.setEnabled(true);
+            btnUjra.setEnabled(true);
+            btnFeladas.setEnabled(true);
+            if(!(megoldasE)){
+                if(!(feladodE)){
+                    lbFeladatMegoldasa.setText("Feladat megoldása: ");
+                    probakSzama = 1;
+                    kerdesekSzama ++;
+                    lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+                    lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+                    lbAlapMuv.setText("Összeadás: " + alapMuv1 + ", Kivonás: " + alapMuv2 + "  , Szorzás:  " + alapMuv3 + " , Osztás:  " + alapMuv4);
+                }
+                else if(feladodE){
+                    lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
+                    lbJoVNem.setText("Feladtad!");
+                    btnMegoldas.setEnabled(false);
+                    btnUjra.setEnabled(false);
+                    btnFeladas.setEnabled(false);
+                }
             }
-//            else if(valasz == eredmeny){
-//                lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
-//                lbJoVNem.setText("A megoldásod jó lett! :)");
-//                btnMegoldas.setEnabled(false);
-//            }
+            else if(valasz.equals(txtEredmeny.getText())){
+                lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
+                lbJoVNem.setText("A megoldásod jó lett! :)");
+                btnMegoldas.setEnabled(false);
+                btnUjra.setEnabled(false);
+                joValaszok ++;
+            }
             else{
                 lbFeladatMegoldasa.setText("Feladat megoldása: ");
                 lbJoVNem.setText("A megoldásod nem jó!");
                 btnMegoldas.setEnabled(false);
-            } 
+            }
+            szazalekosEredm = (joValaszok / kerdesekSzama)* 100 ;
+            megoldasE = false;
+            feladodE = false;
+            lbSzazalekos.setText("Százalékos eredmény: "+ szazalekosEredm + "%");
         }
-        megoldasE = false;
     } 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFeladas;
     private javax.swing.JButton btnMegoldas;
     private javax.swing.JButton btnUjFeladat;
     private javax.swing.JButton btnUjra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -433,11 +538,16 @@ public class csoportmunka extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbAlapMuv;
     private javax.swing.JLabel lbFeladat;
     private javax.swing.JLabel lbFeladatMegoldasa;
     private javax.swing.JLabel lbJoVNem;
     private javax.swing.JLabel lbKerdesekszama;
     private javax.swing.JLabel lbProbakSzama;
+    private javax.swing.JLabel lbSzazalekos;
     private javax.swing.JTextField txtEredmeny;
     // End of variables declaration//GEN-END:variables
 }
