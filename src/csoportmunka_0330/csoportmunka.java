@@ -5,6 +5,8 @@
  */
 package csoportmunka_0330;
 
+import java.util.Random;
+
 /**
  *
  * @author Ckody
@@ -215,15 +217,23 @@ public class csoportmunka extends javax.swing.JFrame {
             }
         });
     }
-    private void összeadás(){
+    private void osszeadas(){
         
     }
     private void osztas(){
         
     }
     private void szorzas(){
-    
-        
+        Random rnd=new Random();
+        int szam1=rnd.nextInt();
+        int szam2=rnd.nextInt();
+        int eredmeny=szam1*szam2;
+        if (eredmeny>0 && eredmeny<100){
+            
+        }
+        else{
+            
+        }
     } 
     private void kivonas(){
     
