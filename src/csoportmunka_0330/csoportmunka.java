@@ -26,6 +26,7 @@ public class csoportmunka extends javax.swing.JFrame {
     int szam1 = 0;
     int szam2 = 0;
     int eredmeny = 0;
+    boolean megoldasE = false;
     String feladatKiiras = "Feladat: ";
     String feladatMegoldasa = "Feladat megoldása: ";
     
@@ -63,11 +64,13 @@ public class csoportmunka extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtEredmeny.setText("                ");
+        txtEredmeny.setMinimumSize(new java.awt.Dimension(54, 20));
+        txtEredmeny.setName(""); // NOI18N
 
         jLabel1.setText("Válaszod:");
 
         btnMegoldas.setText("Megoldás");
+        btnMegoldas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMegoldas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMegoldasActionPerformed(evt);
@@ -77,6 +80,7 @@ public class csoportmunka extends javax.swing.JFrame {
         lbKerdesekszama.setText("Kérdések száma: ");
 
         btnUjFeladat.setText("Új Feladat");
+        btnUjFeladat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUjFeladat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUjFeladatActionPerformed(evt);
@@ -92,14 +96,22 @@ public class csoportmunka extends javax.swing.JFrame {
         lbFeladat.setText("Feladat: ");
 
         btnUjra.setText("Újra");
+        btnUjra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUjra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUjraActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("alapműveletek:");
 
         jLabel7.setText("Százalékos eredmény:");
 
         jMenu1.setText("Feladatok");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem1.setText("Összeadás");
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -108,9 +120,11 @@ public class csoportmunka extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Kivonás");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Szorzás");
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -119,6 +133,7 @@ public class csoportmunka extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Osztás");
+        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -142,9 +157,9 @@ public class csoportmunka extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbFeladat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbKerdesekszama)
                             .addComponent(lbProbakSzama))
@@ -212,6 +227,7 @@ public class csoportmunka extends javax.swing.JFrame {
         osztas();
         kerdesekSzama = 1;
         lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -226,14 +242,25 @@ public class csoportmunka extends javax.swing.JFrame {
             kerdesekSzama ++;
             lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
             probakSzama = 1;
+            lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+            lbFeladatMegoldasa.setText("Feladat megoldása: ");
+            btnMegoldas.setEnabled(true);
         }
+        vegEredmeny();
     }//GEN-LAST:event_btnUjFeladatActionPerformed
 
     private void btnMegoldasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegoldasActionPerformed
-        if(txtEredmeny.equals(eredmeny)){
-            lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
-        }
+        megoldasE = true;
+        vegEredmeny();
     }//GEN-LAST:event_btnMegoldasActionPerformed
+
+    private void btnUjraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjraActionPerformed
+        probakSzama ++;
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+        btnMegoldas.setEnabled(true);
+        txtEredmeny.setText("");
+        vegEredmeny();
+    }//GEN-LAST:event_btnUjraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,10 +317,9 @@ public class csoportmunka extends javax.swing.JFrame {
             szam2 = rnd.nextInt(98)+2;
         }
         feladatKiiras += szam1 + " % " + szam2;
-        int eredmeny1 = szam1 % szam2;
-        eredmeny = eredmeny1;
+        eredmeny = Math.round(szam1 / szam2);
         lbFeladat.setText(feladatKiiras);
-        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+        vegEredmeny();
     }
     private void szorzas(){
     
@@ -303,6 +329,25 @@ public class csoportmunka extends javax.swing.JFrame {
     
         
     }
+    private void vegEredmeny(){
+        if(feladatSorszam != 0){
+            if(!megoldasE){
+                lbFeladatMegoldasa.setText("Feladat megoldása: ");
+            }
+            else if(txtEredmeny.equals(eredmeny)){
+                lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
+                lbJoVNem.setText("A megoldásod jó lett! :)");
+                btnMegoldas.setEnabled(false);
+            }
+            else{
+                lbFeladatMegoldasa.setText("Feladat megoldása: ");
+                lbJoVNem.setText("A megoldásod nem jó!");
+                btnMegoldas.setEnabled(false);
+            } 
+        }
+        megoldasE = false;
+    } 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMegoldas;

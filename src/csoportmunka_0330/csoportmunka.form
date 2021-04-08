@@ -12,11 +12,17 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Feladatok"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xd6;sszead&#xe1;s"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -25,11 +31,17 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Kivon&#xe1;s"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Szorz&#xe1;s"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
@@ -38,6 +50,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Oszt&#xe1;s"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -79,11 +94,11 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtEredmeny" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEredmeny" min="-2" pref="68" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lbFeladat" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbKerdesekszama" min="-2" max="-2" attributes="0"/>
                           <Component id="lbProbakSzama" min="-2" max="-2" attributes="0"/>
@@ -161,7 +176,10 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtEredmeny">
       <Properties>
-        <Property name="text" type="java.lang.String" value="                "/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[54, 20]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -172,6 +190,9 @@
     <Component class="javax.swing.JButton" name="btnMegoldas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Megold&#xe1;s"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMegoldasActionPerformed"/>
@@ -185,6 +206,9 @@
     <Component class="javax.swing.JButton" name="btnUjFeladat">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xda;j Feladat"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUjFeladatActionPerformed"/>
@@ -213,7 +237,13 @@
     <Component class="javax.swing.JButton" name="btnUjra">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xda;jra"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUjraActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
