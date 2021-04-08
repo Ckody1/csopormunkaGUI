@@ -235,6 +235,15 @@ public class csoportmunka extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnUjFeladatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjFeladatActionPerformed
+        if(feladatSorszam == 1){
+            összeadás();
+        }
+        if(feladatSorszam == 2){
+            kivonas();
+        }
+        if(feladatSorszam == 3){
+            szorzas();
+        }
         if(feladatSorszam == 4){
             osztas();
         }
@@ -330,11 +339,12 @@ public class csoportmunka extends javax.swing.JFrame {
         
     }
     private void vegEredmeny(){
+        int valasz = Integer.parseInt(txtEredmeny.getText());
         if(feladatSorszam != 0){
             if(!megoldasE){
                 lbFeladatMegoldasa.setText("Feladat megoldása: ");
             }
-            else if(txtEredmeny.equals(eredmeny)){
+            else if(valasz == eredmeny){
                 lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
                 lbJoVNem.setText("A megoldásod jó lett! :)");
                 btnMegoldas.setEnabled(false);
