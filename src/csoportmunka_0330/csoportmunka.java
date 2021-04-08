@@ -121,6 +121,11 @@ public class csoportmunka extends javax.swing.JFrame {
 
         jMenuItem2.setText("Kivonás");
         jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Szorzás");
@@ -220,7 +225,10 @@ public class csoportmunka extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+         szorzas();
+        kerdesekSzama = 1;
+        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -231,7 +239,10 @@ public class csoportmunka extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        osszeadas();
+        kerdesekSzama = 1;
+        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnUjFeladatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUjFeladatActionPerformed
@@ -271,6 +282,13 @@ public class csoportmunka extends javax.swing.JFrame {
         vegEredmeny();
     }//GEN-LAST:event_btnUjraActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        kivonas();
+        kerdesekSzama = 1;
+        lbKerdesekszama.setText("Kérdések száma: " + kerdesekSzama);
+        lbProbakSzama.setText("Próbálkozások száma: " + probakSzama);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,7 +324,19 @@ public class csoportmunka extends javax.swing.JFrame {
         });
     }
     private void osszeadas(){
-        
+        eredmeny = 0;
+        feladatSorszam = 1;
+        feladatKiiras = "Feladat: ";
+        szam1 = rnd.nextInt(99)+1;
+        szam2 = rnd.nextInt(99)+1;
+        eredmeny = szam1+ szam2;
+        while(eredmeny>100){
+            szam1=rnd.nextInt(10)+1;
+            eredmeny = szam1+ szam2;
+        }
+        feladatKiiras += szam1 + " + " + szam2;
+        lbFeladat.setText(feladatKiiras);
+        vegEredmeny();
     }
     private void osztas(){
         eredmeny = 0;
@@ -325,30 +355,60 @@ public class csoportmunka extends javax.swing.JFrame {
         while(!(szam1 % szam2 == 0)){
             szam2 = rnd.nextInt(98)+2;
         }
-        feladatKiiras += szam1 + " % " + szam2;
+        feladatKiiras += szam1 + " / " + szam2;
         eredmeny = Math.round(szam1 / szam2);
         lbFeladat.setText(feladatKiiras);
         vegEredmeny();
     }
     private void szorzas(){
-    
+       
+        eredmeny=0;
+        feladatSorszam = 3;
+        feladatKiiras = "Feladat: ";
         
+        szam1=rnd.nextInt(10)+1;
+        szam2=rnd.nextInt(10)+1;
+        eredmeny = szam1* szam2;
+        while(eredmeny==100){
+            szam1=rnd.nextInt(10)+1;
+            eredmeny = szam1* szam2;
+        }
+        feladatKiiras += szam1 + " * " + szam2;
+        lbFeladat.setText(feladatKiiras);
+        vegEredmeny();
+       
     } 
     private void kivonas(){
+        eredmeny = 0;
+        feladatSorszam = 2;
+        feladatKiiras = "Feladat: ";
+        szam1 = rnd.nextInt(99)+1;
+        szam2 = rnd.nextInt(99)+1;
+        if(szam1>szam2){
+            eredmeny = szam1-szam2;
+            feladatKiiras += szam1 + " - " + szam2;
+        }else{
+            eredmeny = szam2-szam1;
+            feladatKiiras += szam2 + " - " + szam1;
+        }
+        lbFeladat.setText(feladatKiiras);
+        vegEredmeny();
+        
     
         
     }
+
     private void vegEredmeny(){
-        int valasz = Integer.parseInt(txtEredmeny.getText());
+//        int valasz = Integer.parseInt(txtEredmeny.getText());
         if(feladatSorszam != 0){
             if(!megoldasE){
                 lbFeladatMegoldasa.setText("Feladat megoldása: ");
             }
-            else if(valasz == eredmeny){
-                lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
-                lbJoVNem.setText("A megoldásod jó lett! :)");
-                btnMegoldas.setEnabled(false);
-            }
+//            else if(valasz == eredmeny){
+//                lbFeladatMegoldasa.setText("Feladat megoldása: " + eredmeny);
+//                lbJoVNem.setText("A megoldásod jó lett! :)");
+//                btnMegoldas.setEnabled(false);
+//            }
             else{
                 lbFeladatMegoldasa.setText("Feladat megoldása: ");
                 lbJoVNem.setText("A megoldásod nem jó!");
